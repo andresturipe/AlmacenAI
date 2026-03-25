@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for high-density data */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #f7f9fb; }
+        ::-webkit-scrollbar-thumb { background: #bccac0; border-radius: 0px; }
+        ::-webkit-scrollbar-thumb:hover { background: #006948; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-error-container": "#93000a",
+                        "on-background": "#191c1e",
+                        "secondary-fixed-dim": "#a4d0b8",
+                        "secondary-container": "#c0edd3",
+                        "background": "#f7f9fb",
+                        "on-secondary-fixed-variant": "#264e3c",
+                        "tertiary-fixed": "#ffdad7",
+                        "inverse-on-surface": "#eff1f3",
+                        "primary-fixed": "#85f8c4",
+                        "primary-fixed-dim": "#68dba9",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f7f9fb",
+                        "primary-container": "#00855d",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#7f2928",
+                        "surface-variant": "#e0e3e5",
+                        "on-tertiary-container": "#fffbff",
+                        "on-surface-variant": "#3d4a42",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#6d7a72",
+                        "surface-container": "#eceef0",
+                        "primary": "#006948",
+                        "on-primary-fixed": "#002114",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-surface": "#191c1e",
+                        "tertiary-fixed-dim": "#ffb3ae",
+                        "on-secondary-container": "#446d58",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#002114",
+                        "tertiary": "#9b3e3b",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e6e8ea",
+                        "on-primary-fixed-variant": "#005137",
+                        "on-tertiary-fixed": "#410004",
+                        "inverse-primary": "#68dba9",
+                        "secondary-fixed": "#c0edd3",
+                        "secondary": "#3e6753",
+                        "on-primary-container": "#f5fff7",
+                        "surface-dim": "#d8dadc",
+                        "inverse-surface": "#2d3133",
+                        "surface-tint": "#006c4a",
+                        "outline-variant": "#bccac0",
+                        "surface": "#f7f9fb",
+                        "tertiary-container": "#ba5551",
+                        "surface-container-low": "#f2f4f6"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-full flex flex-col w-64 bg-white dark:bg-slate-900 border-r border-emerald-100 dark:border-emerald-900/30 z-50">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-8 h-8 bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-lg" style="font-variation-settings: 'FILL' 1;">deployed_code</span>
+</div>
+<div>
+<h1 class="text-lg font-bold tracking-tight text-slate-900 dark:text-white leading-none">Valtek Enterprise</h1>
+<p class="text-[10px] uppercase tracking-widest text-emerald-600 font-semibold mt-1">Inventory Management</p>
+</div>
+</div>
+<nav class="space-y-1 font-inter text-sm antialiased font-medium">
+<a class="flex items-center gap-3 px-4 py-2 text-emerald-600 bg-emerald-50 dark:bg-emerald-900/20 border-r-2 border-emerald-600 font-semibold transition-all duration-100 opacity-90" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span>Inventario</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="point_of_sale">point_of_sale</span>
+<span>POS</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+<span>Agente IA</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Configuración</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-4 border-t border-emerald-100 dark:border-emerald-900/30">
+<div class="flex items-center gap-3 p-2 bg-surface-container-low">
+<img alt="User Profile" class="w-8 h-8 object-cover grayscale" data-alt="Professional headshot of a business executive" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1u05-3EQTDCvKd7Gz-m6CjQhD0KhrwhirRz82XJc_xlzlPJfdXjokZdu6ZTVej4cv1L8bhGHtzAtqqLW1TjjAe-CFcJFRaycTCzW_6sscZkOerII45LMXO8DCrKE1oVaNCnfLNAgfkW5YBL0vZoJD6_ZEKkKag4IHKdG2drBVw1vHGd9NIZ__BLZNEV5ilXyRYlBNR1H3ArPpVavdqMFiunQ20DYMnf3MR0A5T8waZ64gzCKcEE4ONytnJCipmRglynOvbBScsepc"/>
+<div class="overflow-hidden">
+<p class="text-xs font-bold truncate">Admin User</p>
+<p class="text-[10px] text-outline truncate uppercase">Global Manager</p>
+</div>
+<span class="material-symbols-outlined ml-auto text-sm text-outline">unfold_more</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex justify-between items-center h-14 px-6 w-full sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-emerald-100 dark:border-emerald-900/30">
+<div class="flex items-center gap-6">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">search</span>
+<input class="bg-surface-container-low border-none text-[10px] font-semibold tracking-widest pl-10 pr-4 py-2 w-64 focus:ring-1 focus:ring-primary focus:bg-white transition-all uppercase" placeholder="BUSCAR EN EL LEDGER..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-slate-500 hover:text-emerald-700 transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-1.5 h-1.5 bg-primary"></span>
+</button>
+<button class="text-slate-500 hover:text-emerald-700 transition-colors">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="h-4 w-[1px] bg-outline-variant mx-2"></div>
+<button class="bg-primary text-on-primary px-4 py-1.5 text-[10px] font-bold uppercase tracking-tighter flex items-center gap-2 hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-xs">add</span>
+                    NUEVA ENTRADA
+                </button>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<div class="p-8 space-y-8">
+<!-- Headline Section -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-3xl font-black text-on-surface tracking-tight leading-none uppercase">Dashboard</h2>
+<p class="text-sm text-outline mt-2 font-medium">Resumen arquitectónico del inventario global al 24 de Mayo, 2024.</p>
+</div>
+<div class="flex gap-2">
+<div class="px-3 py-1 bg-surface-container-high border border-outline-variant flex items-center gap-2">
+<span class="w-2 h-2 bg-primary"></span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Estado: Operacional</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid - Performance Analytics -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Main KPI Card -->
+<div class="col-span-12 md:col-span-8 bg-surface-container-lowest border border-outline-variant p-6 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 -mr-16 -mt-16 rotate-45 group-hover:bg-primary/10 transition-colors"></div>
+<div class="flex justify-between items-start relative z-10">
+<div>
+<p class="text-[10px] font-bold text-outline uppercase tracking-[0.2em] mb-4">Valor Total del Inventario</p>
+<h3 class="text-5xl font-black text-on-surface tracking-tighter">$1,248,390<span class="text-xl text-primary font-bold ml-2">.00</span></h3>
+</div>
+<div class="text-right">
+<span class="text-emerald-600 font-bold text-sm flex items-center justify-end gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                                +12.5%
+                            </span>
+<p class="text-[10px] text-outline uppercase font-semibold mt-1">vs mes anterior</p>
+</div>
+</div>
+<div class="mt-8 grid grid-cols-3 gap-4 border-t border-outline-variant pt-6">
+<div>
+<p class="text-[10px] text-outline font-bold uppercase mb-1">Stock Activo</p>
+<p class="text-xl font-bold">14,203</p>
+</div>
+<div>
+<p class="text-[10px] text-outline font-bold uppercase mb-1">Rotación</p>
+<p class="text-xl font-bold">4.2x</p>
+</div>
+<div>
+<p class="text-[10px] text-outline font-bold uppercase mb-1">Alertas</p>
+<p class="text-xl font-bold text-error">12</p>
+</div>
+</div>
+</div>
+<!-- Secondary KPI Card -->
+<div class="col-span-12 md:col-span-4 bg-primary text-on-primary p-6 flex flex-col justify-between">
+<div>
+<div class="w-10 h-10 bg-on-primary/10 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<p class="text-[10px] font-bold uppercase tracking-[0.2em] opacity-80 mb-2">Ordenes Pendientes</p>
+<h3 class="text-4xl font-black tracking-tighter">482</h3>
+</div>
+<button class="w-full bg-white text-primary text-[10px] font-bold uppercase tracking-widest py-3 mt-6 hover:bg-emerald-50 transition-colors">
+                        Gestionar Cola
+                    </button>
+</div>
+<!-- The Architectural Ledger (Data Table) -->
+<div class="col-span-12 bg-surface-container-lowest border border-outline-variant">
+<div class="px-6 py-4 border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+<h4 class="text-xs font-black uppercase tracking-widest text-on-surface">Movimientos de Inventario Recientes</h4>
+<div class="flex gap-4">
+<button class="text-[10px] font-bold uppercase flex items-center gap-1 text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">filter_list</span> Filtrar
+                            </button>
+<button class="text-[10px] font-bold uppercase flex items-center gap-1 text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">download</span> Exportar
+                            </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container text-[10px] font-bold uppercase tracking-widest text-outline">
+<th class="px-6 py-3 border-r border-outline-variant">ID Ref</th>
+<th class="px-6 py-3 border-r border-outline-variant">Producto</th>
+<th class="px-6 py-3 border-r border-outline-variant">Categoría</th>
+<th class="px-6 py-3 border-r border-outline-variant text-right">Cantidad</th>
+<th class="px-6 py-3 border-r border-outline-variant">Capacidad</th>
+<th class="px-6 py-3">Estado</th>
+</tr>
+</thead>
+<tbody class="text-sm font-medium">
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 border-r border-outline-variant font-mono text-xs text-outline">#VK-9021</td>
+<td class="px-6 py-4 border-r border-outline-variant font-bold text-on-surface">Procesador Valtek X1</td>
+<td class="px-6 py-4 border-r border-outline-variant text-outline uppercase text-[10px] font-bold">Electrónica</td>
+<td class="px-6 py-4 border-r border-outline-variant text-right font-mono">1,200</td>
+<td class="px-6 py-4 border-r border-outline-variant min-w-[150px]">
+<div class="h-2 bg-primary-fixed relative overflow-hidden">
+<div class="absolute top-0 left-0 h-full bg-primary" style="width: 85%"></div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[9px] font-bold uppercase tracking-tighter">Disponible</span>
+</td>
+</tr>
+<tr class="bg-surface-container-low border-b border-outline-variant hover:bg-surface-container transition-colors group">
+<td class="px-6 py-4 border-r border-outline-variant font-mono text-xs text-outline">#VK-8842</td>
+<td class="px-6 py-4 border-r border-outline-variant font-bold text-on-surface">Sensor Fluido Industrial</td>
+<td class="px-6 py-4 border-r border-outline-variant text-outline uppercase text-[10px] font-bold">Maquinaria</td>
+<td class="px-6 py-4 border-r border-outline-variant text-right font-mono">45</td>
+<td class="px-6 py-4 border-r border-outline-variant min-w-[150px]">
+<div class="h-2 bg-primary-fixed relative overflow-hidden">
+<div class="absolute top-0 left-0 h-full bg-error" style="width: 15%"></div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 bg-error-container text-on-error-container text-[9px] font-bold uppercase tracking-tighter">Bajo Stock</span>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 border-r border-outline-variant font-mono text-xs text-outline">#VK-7721</td>
+<td class="px-6 py-4 border-r border-outline-variant font-bold text-on-surface">Módulo RAM 32GB v4</td>
+<td class="px-6 py-4 border-r border-outline-variant text-outline uppercase text-[10px] font-bold">Electrónica</td>
+<td class="px-6 py-4 border-r border-outline-variant text-right font-mono">850</td>
+<td class="px-6 py-4 border-r border-outline-variant min-w-[150px]">
+<div class="h-2 bg-primary-fixed relative overflow-hidden">
+<div class="absolute top-0 left-0 h-full bg-primary" style="width: 60%"></div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[9px] font-bold uppercase tracking-tighter">Disponible</span>
+</td>
+</tr>
+<tr class="bg-surface-container-low border-b border-outline-variant hover:bg-surface-container transition-colors group">
+<td class="px-6 py-4 border-r border-outline-variant font-mono text-xs text-outline">#VK-1004</td>
+<td class="px-6 py-4 border-r border-outline-variant font-bold text-on-surface">Cable Fibra Optica 50m</td>
+<td class="px-6 py-4 border-r border-outline-variant text-outline uppercase text-[10px] font-bold">Infraestructura</td>
+<td class="px-6 py-4 border-r border-outline-variant text-right font-mono">0</td>
+<td class="px-6 py-4 border-r border-outline-variant min-w-[150px]">
+<div class="h-2 bg-surface-container-highest relative overflow-hidden">
+<div class="absolute top-0 left-0 h-full bg-outline" style="width: 0%"></div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 bg-surface-variant text-on-surface-variant text-[9px] font-bold uppercase tracking-tighter">Agotado</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 bg-white flex justify-between items-center text-[10px] font-bold uppercase tracking-widest text-outline">
+<span>Mostrando 4 de 1,240 registros</span>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant hover:bg-primary hover:text-white transition-colors">1</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant hover:bg-primary hover:text-white transition-colors">2</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant hover:bg-primary hover:text-white transition-colors">3</button>
+<span class="w-8 h-8 flex items-center justify-center">...</span>
+</div>
+</div>
+</div>
+<!-- AI Agent & System Status Section -->
+<div class="col-span-12 md:col-span-6 space-y-6">
+<div class="bg-white border border-outline-variant p-6 h-full">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<h4 class="text-xs font-black uppercase tracking-widest">Recomendaciones de IA</h4>
+</div>
+<div class="space-y-4">
+<div class="p-4 bg-surface-container-low border-l-4 border-primary">
+<p class="text-xs font-bold text-on-surface mb-1">Optimización de Stock Detectada</p>
+<p class="text-xs text-outline">Se recomienda aumentar el pedido de "Procesador Valtek X1" en un 15% para el próximo trimestre basado en tendencias de venta.</p>
+<button class="mt-3 text-[9px] font-black uppercase text-primary hover:underline">Aplicar Sugerencia</button>
+</div>
+<div class="p-4 bg-surface-container-low border-l-4 border-tertiary-container">
+<p class="text-xs font-bold text-on-surface mb-1">Anomalía de Precios</p>
+<p class="text-xs text-outline">Detectado cambio de precio inusual en 3 proveedores de "Cable Fibra". Revisar contratos vigentes.</p>
+<button class="mt-3 text-[9px] font-black uppercase text-tertiary hover:underline">Ver Reporte</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Network Grid Summary -->
+<div class="col-span-12 md:col-span-6">
+<div class="bg-surface-container-highest border border-outline-variant p-6 h-full grid grid-cols-2 gap-4">
+<div class="bg-white p-4 border border-outline-variant flex flex-col justify-between">
+<p class="text-[9px] font-bold uppercase text-outline">Almacenes Activos</p>
+<p class="text-2xl font-black">24</p>
+<div class="w-full h-1 bg-surface-container mt-2">
+<div class="h-full bg-primary" style="width: 75%"></div>
+</div>
+</div>
+<div class="bg-white p-4 border border-outline-variant flex flex-col justify-between">
+<p class="text-[9px] font-bold uppercase text-outline">Proveedores</p>
+<p class="text-2xl font-black">118</p>
+<div class="w-full h-1 bg-surface-container mt-2">
+<div class="h-full bg-primary" style="width: 40%"></div>
+</div>
+</div>
+<div class="bg-white p-4 border border-outline-variant flex flex-col justify-between">
+<p class="text-[9px] font-bold uppercase text-outline">Tiempos Entrega (Prom)</p>
+<p class="text-2xl font-black">2.4<span class="text-xs ml-1">días</span></p>
+<div class="w-full h-1 bg-surface-container mt-2">
+<div class="h-full bg-primary" style="width: 90%"></div>
+</div>
+</div>
+<div class="bg-white p-4 border border-outline-variant flex flex-col justify-between">
+<p class="text-[9px] font-bold uppercase text-outline">Eficiencia Logística</p>
+<p class="text-2xl font-black">98.2%</p>
+<div class="w-full h-1 bg-surface-container mt-2">
+<div class="h-full bg-primary" style="width: 98%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- System Footer Metadata -->
+<footer class="mt-auto border-t border-outline-variant p-6 bg-white flex justify-between items-center">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+<span class="text-[9px] font-bold uppercase text-outline">Servidor: S-VAL-01 (LATAM)</span>
+</div>
+<span class="text-[9px] font-bold uppercase text-outline">Versión Sistema: 4.2.0-STABLE</span>
+</div>
+<div class="text-[9px] font-bold uppercase text-outline tracking-widest">
+                © 2024 VALTEK ENTERPRISE SOLUTIONS. TODOS LOS DERECHOS RESERVADOS.
+            </div>
+</footer>
+</main>
+<!-- Contextual FAB - Dashboard Primary Action -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-on-primary shadow-2xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">qr_code_scanner</span>
+</button>
+</body></html>

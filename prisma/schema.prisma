@@ -1,0 +1,259 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ──────────────────────────────────────────────
+// Multi-Tenant: Organization
+// ──────────────────────────────────────────────
+
+model Organization {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users        User[]
+  products     Product[]
+  inventoryLogs InventoryLog[]
+  exchangeRates ExchangeRate[]
+  categories   Category[]
+  sales        Sale[]
+  quotes       Quote[]
+  customColumns CustomColumn[]
+}
+
+// ──────────────────────────────────────────────
+// User
+// ──────────────────────────────────────────────
+
+model User {
+  id             String   @id @default(cuid())
+  email          String   @unique
+  name           String?
+  role           Role     @default(OPERATOR)
+  organizationId String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization  Organization   @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  inventoryLogs InventoryLog[]
+  sales         Sale[]
+  quotes        Quote[]
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  WAREHOUSE_MANAGER
+  OPERATOR
+  AUDITOR
+}
+
+// ──────────────────────────────────────────────
+// Category
+// ──────────────────────────────────────────────
+
+model Category {
+  id             String   @id @default(cuid())
+  name           String
+  organizationId String
+  createdAt      DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  products     Product[]
+  customColumns CustomColumn[]
+
+  @@unique([name, organizationId])
+}
+
+// ──────────────────────────────────────────────
+// Product
+// ──────────────────────────────────────────────
+
+model Product {
+  id               String   @id @default(cuid())
+  sku              String
+  name             String
+  description      String?
+  priceUsd         Float    @default(0)
+  minStock         Int      @default(0)
+  currentStock     Int      @default(0)
+  categoryId       String?
+  organizationId   String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization  Organization   @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  category      Category?      @relation(fields: [categoryId], references: [id])
+  inventoryLogs InventoryLog[]
+  saleItems     SaleItem[]
+  quoteItems    QuoteItem[]
+  columnValues  ProductColumnValue[]
+
+  @@unique([sku, organizationId])
+}
+
+// ──────────────────────────────────────────────
+// Custom Columns (Dynamic Cells)
+// ──────────────────────────────────────────────
+
+model CustomColumn {
+  id             String       @id @default(cuid())
+  name           String
+  type           ColumnType   @default(PERCENTAGE_ADD)
+  organizationId String
+  categoryId     String       // Obligatorio para separar por hoja
+  createdAt      DateTime     @default(now())
+
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  category       Category     @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  values         ProductColumnValue[]
+
+  @@unique([name, categoryId])
+}
+
+model ProductColumnValue {
+  id        String       @id @default(cuid())
+  productId String
+  columnId  String
+  value     String
+
+  product   Product      @relation(fields: [productId], references: [id], onDelete: Cascade)
+  column    CustomColumn @relation(fields: [columnId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, columnId])
+}
+
+enum ColumnType {
+  PERCENTAGE_ADD
+  PERCENTAGE_SUB
+  NUMBER
+  TEXT
+}
+// ──────────────────────────────────────────────
+// InventoryLog — Registro histórico de movimientos
+// ──────────────────────────────────────────────
+
+model InventoryLog {
+  id             String        @id @default(cuid())
+  type           MovementType
+  quantity       Int
+  previousStock  Int
+  newStock       Int
+  note           String?
+  productId      String
+  userId         String
+  organizationId String
+  createdAt      DateTime      @default(now())
+
+  product      Product      @relation(fields: [productId], references: [id], onDelete: Cascade)
+  user         User         @relation(fields: [userId], references: [id])
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+}
+
+enum MovementType {
+  ENTRADA
+  SALIDA
+  AJUSTE
+  VENTA
+  DEVOLUCION
+}
+
+// ──────────────────────────────────────────────
+// Ventas (Sales)
+// ──────────────────────────────────────────────
+
+model Sale {
+  id                 String      @id @default(cuid())
+  totalUsd           Float       @default(0)
+  discountPercentage Float       @default(0)
+  status             SaleStatus  @default(COMPLETED)
+  organizationId     String
+  userId             String
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user           User         @relation(fields: [userId], references: [id])
+  items          SaleItem[]
+}
+
+model SaleItem {
+  id          String   @id @default(cuid())
+  saleId      String
+  productId   String
+  quantity    Int
+  priceAtSale Float    // Captura el precio en el momento de la venta
+
+  sale        Sale     @relation(fields: [saleId], references: [id], onDelete: Cascade)
+  product     Product  @relation(fields: [productId], references: [id])
+}
+
+enum SaleStatus {
+  COMPLETED
+  CANCELLED
+  RETURNED
+}
+
+// ──────────────────────────────────────────────
+// ExchangeRate — Tasa de cambio automatizada
+// ──────────────────────────────────────────────
+
+model ExchangeRate {
+  id             String   @id @default(cuid())
+  currency       String   // e.g., "VES", "COP", "EUR"
+  rateToUsd      Float    // How many units = 1 USD
+  source         String   @default("manual") // "openexchangerates", "manual"
+  organizationId String
+  createdAt      DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@unique([currency, organizationId])
+}
+
+// ──────────────────────────────────────────────
+// Cotizaciones (Quotes)
+// ──────────────────────────────────────────────
+
+model Quote {
+  id                 String      @id @default(cuid())
+  clientName         String
+  totalUsd           Float       @default(0)
+  status             QuoteStatus @default(PENDIENTE)
+  discountPercentage Float       @default(0)
+  expiresAt          DateTime
+  organizationId     String
+  userId             String
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user           User         @relation(fields: [userId], references: [id])
+  items          QuoteItem[]
+}
+
+model QuoteItem {
+  id          String   @id @default(cuid())
+  quoteId     String
+  productId   String
+  quantity    Int
+  unitPrice   Float    // Permite ajuste manual en el presupuesto
+
+  quote       Quote    @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+  product     Product  @relation(fields: [productId], references: [id])
+}
+
+enum QuoteStatus {
+  PENDIENTE
+  APROBADA
+  RECHAZADA
+  EXPIRADA
+}

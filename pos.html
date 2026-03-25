@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error-container": "#93000a",
+              "on-background": "#191c1e",
+              "secondary-fixed-dim": "#a4d0b8",
+              "secondary-container": "#c0edd3",
+              "background": "#f7f9fb",
+              "on-secondary-fixed-variant": "#264e3c",
+              "tertiary-fixed": "#ffdad7",
+              "inverse-on-surface": "#eff1f3",
+              "primary-fixed": "#85f8c4",
+              "primary-fixed-dim": "#68dba9",
+              "on-error": "#ffffff",
+              "surface-bright": "#f7f9fb",
+              "primary-container": "#00855d",
+              "on-secondary": "#ffffff",
+              "on-tertiary-fixed-variant": "#7f2928",
+              "surface-variant": "#e0e3e5",
+              "on-tertiary-container": "#fffbff",
+              "on-surface-variant": "#3d4a42",
+              "error-container": "#ffdad6",
+              "surface-container-lowest": "#ffffff",
+              "outline": "#6d7a72",
+              "surface-container": "#eceef0",
+              "primary": "#006948",
+              "on-primary-fixed": "#002114",
+              "surface-container-highest": "#e0e3e5",
+              "on-surface": "#191c1e",
+              "tertiary-fixed-dim": "#ffb3ae",
+              "on-secondary-container": "#446d58",
+              "error": "#ba1a1a",
+              "on-secondary-fixed": "#002114",
+              "tertiary": "#9b3e3b",
+              "on-primary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "surface-container-high": "#e6e8ea",
+              "on-primary-fixed-variant": "#005137",
+              "on-tertiary-fixed": "#410004",
+              "inverse-primary": "#68dba9",
+              "secondary-fixed": "#c0edd3",
+              "secondary": "#3e6753",
+              "on-primary-container": "#f5fff7",
+              "surface-dim": "#d8dadc",
+              "inverse-surface": "#2d3133",
+              "surface-tint": "#006c4a",
+              "outline-variant": "#bccac0",
+              "surface": "#f7f9fb",
+              "tertiary-container": "#ba5551",
+              "surface-container-low": "#f2f4f6"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: #f7f9fb; }
+        ::-webkit-scrollbar-thumb { background: #bccac0; }
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
+    </style>
+</head>
+<body class="antialiased text-on-surface overflow-hidden">
+<!-- Sidebar Shell -->
+<aside class="fixed left-0 top-0 h-full flex flex-col bg-white dark:bg-slate-900 font-inter text-sm antialiased font-medium docked h-screen w-64 border-r-0 border-r border-emerald-100 dark:border-emerald-900/30 flat no shadows z-50">
+<div class="p-6">
+<div class="text-lg font-bold tracking-tight text-slate-900 dark:text-white uppercase">Valtek Enterprise</div>
+<div class="text-[10px] text-emerald-600 font-bold tracking-[0.2em] uppercase mt-1">Inventory Management</div>
+</div>
+<nav class="flex-1 mt-4">
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                Inventario
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-emerald-600 bg-emerald-50 dark:bg-emerald-900/20 border-r-2 border-emerald-600 font-semibold Active: opacity-90 transition-all duration-100" href="#">
+<span class="material-symbols-outlined">point_of_sale</span>
+                POS
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+                Agente IA
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Configuración
+            </a>
+</nav>
+<div class="p-4 mt-auto border-t border-emerald-100 dark:border-emerald-900/30">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-xs">V</div>
+<div>
+<div class="text-xs font-bold text-slate-900 dark:text-white">Admin User</div>
+<div class="text-[10px] text-slate-500">Valtek S.A.</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Stage -->
+<main class="ml-64 flex flex-col h-screen">
+<!-- Top Navigation Bar -->
+<header class="flex justify-between items-center h-14 px-6 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md docked full-width top-0 sticky z-40 border-b border-emerald-100 dark:border-emerald-900/30 flat no shadows">
+<div class="flex items-center flex-1 max-w-2xl">
+<div class="relative w-full focus-within:ring-1 focus-within:ring-emerald-500">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant px-10 py-1.5 text-xs font-semibold tracking-wider placeholder:text-slate-400 uppercase outline-none focus:border-primary" placeholder="BUSCAR PRODUCTOS O SKU..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6 ml-6">
+<button class="text-slate-500 hover:text-emerald-700 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-slate-500 hover:text-emerald-700 transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-8 w-8 bg-slate-200 overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="Portrait of a professional business person" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc3xX-xia8H7rRyi-U1DMtjGDhaODxcR223Iu5NmSwm8zO5YLqQxvWN-UsPkIr2PIatWFyhdDueeCxnoq5dSxcVm5w70fBMNS4Wu0XChwzJEZVtK782cSp63S4okBSvl36hMZb6suEnSqxyFytMDI3W7tM5FJv6c35XbaRpkDBmG0kQ5YTGkkL7NHKoUNF4yW1ds2rtI5ySSolUup83HNgIIWcxYtMf-zerZ1djsK8LVIavLc40cbr_D2mwOfdwZILcpceYzJBn_1E"/>
+</div>
+</div>
+</header>
+<!-- POS Workspace -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Center: Product Grid -->
+<section class="flex-1 bg-white overflow-y-auto p-4 border-r border-outline-variant">
+<div class="mb-4 flex justify-between items-end">
+<div>
+<h2 class="text-lg font-black text-on-surface uppercase tracking-tighter">Terminal de Ventas</h2>
+<p class="text-[10px] text-outline font-bold uppercase tracking-widest">Catálogo de Disponibilidad</p>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-1.5 bg-surface-container border border-outline-variant text-[10px] font-bold uppercase hover:bg-surface-container-high">Filtros</button>
+<button class="px-4 py-1.5 bg-surface-container border border-outline-variant text-[10px] font-bold uppercase hover:bg-surface-container-high">Categorías</button>
+</div>
+</div>
+<!-- Ledger Table -->
+<div class="w-full border border-outline-variant bg-surface-container-lowest">
+<div class="grid grid-cols-12 bg-surface-container border-b border-outline-variant">
+<div class="col-span-2 p-2 text-[10px] font-black uppercase text-on-surface-variant border-r border-outline-variant">SKU</div>
+<div class="col-span-5 p-2 text-[10px] font-black uppercase text-on-surface-variant border-r border-outline-variant">Nombre del Producto</div>
+<div class="col-span-2 p-2 text-[10px] font-black uppercase text-on-surface-variant border-r border-outline-variant text-center">Stock</div>
+<div class="col-span-2 p-2 text-[10px] font-black uppercase text-on-surface-variant border-r border-outline-variant text-right">Precio USD</div>
+<div class="col-span-1 p-2 text-[10px] font-black uppercase text-on-surface-variant text-center">Acción</div>
+</div>
+<!-- Row 1 -->
+<div class="grid grid-cols-12 border-b border-outline-variant hover:bg-emerald-50/30 group transition-colors">
+<div class="col-span-2 p-3 text-xs font-mono border-r border-outline-variant">VTK-9021</div>
+<div class="col-span-5 p-3 text-xs font-bold border-r border-outline-variant">Rodamiento Industrial 4400-X</div>
+<div class="col-span-2 p-3 text-xs font-medium border-r border-outline-variant text-center">
+<span class="bg-primary-fixed text-on-primary-fixed px-1.5 py-0.5 text-[10px] font-bold">142</span>
+</div>
+<div class="col-span-2 p-3 text-xs font-bold border-r border-outline-variant text-right">$45.50</div>
+<div class="col-span-1 p-3 text-center">
+<button class="material-symbols-outlined text-primary hover:scale-110 transition-transform cursor-pointer">add_box</button>
+</div>
+</div>
+<!-- Row 2 (Zebra) -->
+<div class="grid grid-cols-12 bg-surface-container-low border-b border-outline-variant hover:bg-emerald-50/30 group transition-colors">
+<div class="col-span-2 p-3 text-xs font-mono border-r border-outline-variant">VTK-8812</div>
+<div class="col-span-5 p-3 text-xs font-bold border-r border-outline-variant">Válvula de Presión Hidráulica</div>
+<div class="col-span-2 p-3 text-xs font-medium border-r border-outline-variant text-center">
+<span class="bg-primary-fixed text-on-primary-fixed px-1.5 py-0.5 text-[10px] font-bold">89</span>
+</div>
+<div class="col-span-2 p-3 text-xs font-bold border-r border-outline-variant text-right">$112.00</div>
+<div class="col-span-1 p-3 text-center">
+<button class="material-symbols-outlined text-primary hover:scale-110 transition-transform cursor-pointer">add_box</button>
+</div>
+</div>
+<!-- Row 3 -->
+<div class="grid grid-cols-12 border-b border-outline-variant hover:bg-emerald-50/30 group transition-colors">
+<div class="col-span-2 p-3 text-xs font-mono border-r border-outline-variant">VTK-1044</div>
+<div class="col-span-5 p-3 text-xs font-bold border-r border-outline-variant">Filtro de Aire Premium G-Series</div>
+<div class="col-span-2 p-3 text-xs font-medium border-r border-outline-variant text-center">
+<span class="bg-error-container text-on-error-container px-1.5 py-0.5 text-[10px] font-bold">12</span>
+</div>
+<div class="col-span-2 p-3 text-xs font-bold border-r border-outline-variant text-right">$18.25</div>
+<div class="col-span-1 p-3 text-center">
+<button class="material-symbols-outlined text-primary hover:scale-110 transition-transform cursor-pointer">add_box</button>
+</div>
+</div>
+<!-- Row 4 (Zebra) -->
+<div class="grid grid-cols-12 bg-surface-container-low border-b border-outline-variant hover:bg-emerald-50/30 group transition-colors">
+<div class="col-span-2 p-3 text-xs font-mono border-r border-outline-variant">VTK-2291</div>
+<div class="col-span-5 p-3 text-xs font-bold border-r border-outline-variant">Cable de Control Blindado 50m</div>
+<div class="col-span-2 p-3 text-xs font-medium border-r border-outline-variant text-center">
+<span class="bg-primary-fixed text-on-primary-fixed px-1.5 py-0.5 text-[10px] font-bold">210</span>
+</div>
+<div class="col-span-2 p-3 text-xs font-bold border-r border-outline-variant text-right">$89.99</div>
+<div class="col-span-1 p-3 text-center">
+<button class="material-symbols-outlined text-primary hover:scale-110 transition-transform cursor-pointer">add_box</button>
+</div>
+</div>
+<!-- Row 5 -->
+<div class="grid grid-cols-12 border-b border-outline-variant hover:bg-emerald-50/30 group transition-colors">
+<div class="col-span-2 p-3 text-xs font-mono border-r border-outline-variant">VTK-7742</div>
+<div class="col-span-5 p-3 text-xs font-bold border-r border-outline-variant">Bomba de Engranajes 2.5 HP</div>
+<div class="col-span-2 p-3 text-xs font-medium border-r border-outline-variant text-center">
+<span class="bg-primary-fixed text-on-primary-fixed px-1.5 py-0.5 text-[10px] font-bold">45</span>
+</div>
+<div class="col-span-2 p-3 text-xs font-bold border-r border-outline-variant text-right">$450.00</div>
+<div class="col-span-1 p-3 text-center">
+<button class="material-symbols-outlined text-primary hover:scale-110 transition-transform cursor-pointer">add_box</button>
+</div>
+</div>
+<!-- Data Visualization Row -->
+<div class="grid grid-cols-12 bg-surface-container-highest/10 border-b border-outline-variant h-8">
+<div class="col-span-12 p-0 flex items-center">
+<div class="bg-primary h-full transition-all duration-500" style="width: 65%;"></div>
+<span class="text-[9px] font-black text-primary px-2 uppercase">Capacidad de Inventario: 65% Utilizado</span>
+</div>
+</div>
+</div>
+<!-- Pagination Grid Mockup -->
+<div class="mt-4 flex items-center justify-between">
+<div class="text-[10px] font-bold text-outline uppercase tracking-widest">Mostrando 1-5 de 1,240 productos</div>
+<div class="flex border border-outline-variant">
+<button class="w-8 h-8 flex items-center justify-center border-r border-outline-variant hover:bg-surface-container"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="w-8 h-8 flex items-center justify-center border-r border-outline-variant bg-primary text-white text-[10px] font-bold">1</button>
+<button class="w-8 h-8 flex items-center justify-center border-r border-outline-variant hover:bg-surface-container text-[10px] font-bold">2</button>
+<button class="w-8 h-8 flex items-center justify-center border-r border-outline-variant hover:bg-surface-container text-[10px] font-bold">3</button>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+</section>
+<!-- Right Panel: Cart / Checkout -->
+<section class="w-96 flex flex-col bg-white">
+<!-- Header -->
+<div class="p-4 border-b border-outline-variant">
+<div class="flex justify-between items-center mb-2">
+<h3 class="text-sm font-black uppercase tracking-tighter">Resumen de Carrito</h3>
+<span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 border border-emerald-200">FOLIO: #V-2024-001</span>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 text-[9px] font-black uppercase border border-outline-variant py-1 hover:bg-surface-container transition-colors">Nuevo Cliente</button>
+<button class="flex-1 text-[9px] font-black uppercase border border-outline-variant py-1 hover:bg-surface-container transition-colors">Limpiar Carro</button>
+</div>
+</div>
+<!-- Mini Spreadsheet Cart -->
+<div class="flex-1 overflow-y-auto">
+<table class="w-full text-xs border-collapse">
+<thead class="sticky top-0 bg-surface-container z-10">
+<tr>
+<th class="p-2 border-b border-outline-variant text-left font-black uppercase text-[9px]">Item</th>
+<th class="p-2 border-b border-outline-variant text-center font-black uppercase text-[9px]">Cant.</th>
+<th class="p-2 border-b border-outline-variant text-right font-black uppercase text-[9px]">Total</th>
+<th class="p-2 border-b border-outline-variant text-center font-black uppercase text-[9px]"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="hover:bg-surface-container-low">
+<td class="p-2 border-b border-outline-variant">
+<div class="font-bold">Rodamiento Ind.</div>
+<div class="text-[9px] text-outline">$45.50 c/u</div>
+</td>
+<td class="p-2 border-b border-outline-variant text-center">
+<div class="flex items-center justify-center border border-outline-variant">
+<button class="w-4 hover:bg-surface-container">-</button>
+<input class="w-6 text-center text-[10px] border-none focus:ring-0 p-0 font-bold" type="text" value="2"/>
+<button class="w-4 hover:bg-surface-container">+</button>
+</div>
+</td>
+<td class="p-2 border-b border-outline-variant text-right font-bold">$91.00</td>
+<td class="p-2 border-b border-outline-variant text-center">
+<span class="material-symbols-outlined text-sm text-error cursor-pointer">close</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low">
+<td class="p-2 border-b border-outline-variant">
+<div class="font-bold">Filtro Aire Premium</div>
+<div class="text-[9px] text-outline">$18.25 c/u</div>
+</td>
+<td class="p-2 border-b border-outline-variant text-center">
+<div class="flex items-center justify-center border border-outline-variant">
+<button class="w-4 hover:bg-surface-container">-</button>
+<input class="w-6 text-center text-[10px] border-none focus:ring-0 p-0 font-bold" type="text" value="1"/>
+<button class="w-4 hover:bg-surface-container">+</button>
+</div>
+</td>
+<td class="p-2 border-b border-outline-variant text-right font-bold">$18.25</td>
+<td class="p-2 border-b border-outline-variant text-center">
+<span class="material-symbols-outlined text-sm text-error cursor-pointer">close</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Calculated Totals Panel -->
+<div class="bg-surface-container p-4 border-t border-outline">
+<div class="grid grid-cols-2 gap-y-2 mb-4">
+<div class="text-[10px] font-bold text-outline-variant uppercase">Subtotal (USD)</div>
+<div class="text-[10px] font-bold text-right text-on-surface">$109.25</div>
+<div class="text-[10px] font-bold text-outline-variant uppercase">Impuestos (16%)</div>
+<div class="text-[10px] font-bold text-right text-on-surface">$17.48</div>
+<div class="col-span-2 border-t border-outline-variant my-1"></div>
+<div class="text-sm font-black text-on-surface uppercase tracking-tight">Total USD</div>
+<div class="text-sm font-black text-right text-on-surface">$126.73</div>
+<div class="text-[10px] font-bold text-emerald-600 uppercase tracking-widest mt-1">Total MXN (Ref)</div>
+<div class="text-[10px] font-bold text-right text-emerald-600 mt-1">$2,154.41</div>
+</div>
+<button class="w-full bg-primary text-on-primary h-16 text-sm font-black tracking-[0.2em] uppercase hover:bg-primary-container transition-all flex items-center justify-center gap-3">
+<span class="material-symbols-outlined">payments</span>
+                        PROCESAR VENTA
+                    </button>
+<div class="mt-3 flex justify-between gap-1">
+<button class="flex-1 bg-white border border-outline-variant text-[9px] font-bold uppercase py-2 hover:bg-surface-container-highest transition-all">Cotizar</button>
+<button class="flex-1 bg-white border border-outline-variant text-[9px] font-bold uppercase py-2 hover:bg-surface-container-highest transition-all">Pausar</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Floating Quick Actions (Suppressed for Shell Rules) -->
+</body></html>

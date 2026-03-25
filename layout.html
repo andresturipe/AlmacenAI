@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Valtek Dashboard | Inventory Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "error-container": "#7f2927",
+              "surface-container": "#0a1839",
+              "inverse-primary": "#5c5f61",
+              "on-tertiary-container": "#414f62",
+              "outline": "#6073ad",
+              "on-tertiary-fixed": "#2e3d4e",
+              "outline-variant": "#32457c",
+              "on-secondary-container": "#b4c0d7",
+              "on-background": "#dfe4ff",
+              "tertiary-fixed-dim": "#c1d0e6",
+              "surface-container-high": "#0b1d48",
+              "tertiary-fixed": "#cfdef5",
+              "on-primary": "#3d4142",
+              "primary-dim": "#b6b9bb",
+              "on-surface": "#dfe4ff",
+              "error-dim": "#bb5551",
+              "secondary-fixed-dim": "#cad5ed",
+              "tertiary-container": "#cfdef5",
+              "on-error": "#490106",
+              "inverse-surface": "#faf8ff",
+              "on-secondary-fixed": "#354053",
+              "on-secondary": "#152032",
+              "on-surface-variant": "#96a9e6",
+              "tertiary-dim": "#c1d0e6",
+              "primary": "#c4c7c9",
+              "background": "#070d1f",
+              "primary-container": "#444749",
+              "surface-tint": "#c4c7c9",
+              "on-secondary-fixed-variant": "#515c70",
+              "secondary": "#939eb5",
+              "surface-container-low": "#09122b",
+              "surface-dim": "#070d1f",
+              "on-error-container": "#ff9993",
+              "surface": "#070d1f",
+              "surface-variant": "#0a2257",
+              "surface-container-lowest": "#000000",
+              "inverse-on-surface": "#4f5469",
+              "surface-container-highest": "#0a2257",
+              "on-tertiary-fixed-variant": "#4a596c",
+              "on-primary-fixed-variant": "#595c5e",
+              "secondary-fixed": "#d8e3fb",
+              "secondary-container": "#313c4f",
+              "on-primary-fixed": "#3c4042",
+              "secondary-dim": "#939eb5",
+              "on-primary-container": "#ced1d2",
+              "surface-bright": "#082768",
+              "primary-fixed-dim": "#d2d5d7",
+              "primary-fixed": "#e0e3e5",
+              "error": "#ee7d77",
+              "tertiary": "#e0ecff",
+              "on-tertiary": "#49586b"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #070d1f;
+            color: #dfe4ff;
+        }
+        .signature-glow {
+            background: linear-gradient(135deg, #c4c7c9 0%, #444749 100%);
+        }
+        .glass-panel {
+            background: rgba(10, 34, 87, 0.6);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="overflow-hidden">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r-0 bg-slate-950 dark:bg-[#09122b] shadow-none z-50">
+<div class="flex flex-col h-full p-6 gap-8">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg signature-glow flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-xl" style="font-variation-settings: 'FILL' 1;">package_2</span>
+</div>
+<span class="text-2xl font-black tracking-tighter text-[#dfe4ff] uppercase">Valtek</span>
+</div>
+<p class="font-inter text-xs uppercase tracking-widest text-[#96a9e6] mt-2 ml-1">Inventory Intelligence</p>
+</div>
+<nav class="flex flex-col gap-2">
+<!-- Dashboard Active -->
+<a class="flex items-center gap-3 px-4 py-3 bg-[#0a1839] text-[#dfe4ff] rounded-lg transition-all duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-inter tracking-tight text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#96a9e6] hover:bg-[#0a1839]/50 transition-all duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-inter tracking-tight text-sm font-medium">Inventario</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#96a9e6] hover:bg-[#0a1839]/50 transition-all duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+<span class="font-inter tracking-tight text-sm font-medium">Agente IA</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#96a9e6] hover:bg-[#0a1839]/50 transition-all duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-inter tracking-tight text-sm font-medium">Configuración</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-outline-variant/10">
+<div class="flex items-center gap-3 px-2">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="User professional profile portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzTxyiQj-hxab4RmfC4dL2YXozaNn5UJsAFOiXDL0YGHd3FBQ3N8YQB8tbyJHfm7_wE_7BRo3aNPVrgqFVI_N3lM5MZrJoUFq3m7oliMWr1sJucn-suZHljtCG2foCOXSC79-VBcH-b_AwboFreoznjQnoRcAQgSsLDXBWZfdJ-0MSRkSMzSoTr08gztTRBAXMXQTrBT6QF0BeQ2fByi4SmtvmpWJ6IFdbJVap5psdOUzHuIt2UD4edXg312f-c0UrVi6egeprhU-r"/>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-on-surface">Admin User</span>
+<span class="text-[10px] uppercase tracking-wider text-on-surface-variant">Enterprise Plan</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Shell -->
+<main class="ml-64 min-h-screen bg-surface relative">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-transparent dark:bg-transparent backdrop-blur-xl z-40">
+<div class="flex justify-between items-center px-8 h-full w-full">
+<!-- Search -->
+<div class="flex-1 max-w-md">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg pl-10 pr-4 py-2 text-xs font-inter tracking-widest focus:ring-1 focus:ring-primary/30 transition-all text-on-surface" placeholder="BUSCAR PRODUCTOS O ALMACENES..." type="text"/>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-6">
+<nav class="hidden lg:flex items-center gap-8">
+<a class="font-inter text-xs uppercase tracking-widest text-[#dfe4ff] font-bold" href="#">Home</a>
+<a class="font-inter text-xs uppercase tracking-widest text-[#96a9e6] hover:text-[#c4c7c9] transition-colors" href="#">Inventory</a>
+<a class="font-inter text-xs uppercase tracking-widest text-[#96a9e6] hover:text-[#c4c7c9] transition-colors" href="#">Analytics</a>
+</nav>
+<div class="h-4 w-[1px] bg-outline-variant/30"></div>
+<div class="flex items-center gap-4">
+<button class="text-[#96a9e6] hover:text-[#c4c7c9] transition-colors focus:ring-1 focus:ring-[#c4c7c9]/30">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-[#96a9e6] hover:text-[#c4c7c9] transition-colors focus:ring-1 focus:ring-[#c4c7c9]/30">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Canvas Area -->
+<div class="pt-24 px-12 pb-12 h-screen overflow-y-auto">
+<!-- Hero Header -->
+<section class="mb-12">
+<div class="flex flex-col gap-2">
+<span class="label-sm text-[0.6875rem] uppercase tracking-[0.2em] text-on-surface-variant font-medium">BIEVENIDO DE VUELTA</span>
+<h1 class="text-[2.75rem] font-headline font-bold text-on-surface tracking-[-0.04em] leading-none">Welcome to Valtek</h1>
+<p class="text-on-surface-variant max-w-2xl mt-4">Gestión inteligente de inventario impulsada por IA. Aquí tienes un resumen del estado actual de tu cadena de suministro.</p>
+</div>
+</section>
+<!-- Bento Grid Metrics -->
+<div class="grid grid-cols-12 gap-6 mb-12">
+<!-- Total Products Card -->
+<div class="col-span-12 md:col-span-4 bg-surface-container rounded-xl p-8 relative overflow-hidden flex flex-col justify-between group">
+<div class="absolute top-0 right-0 p-4">
+<span class="material-symbols-outlined text-primary/20 text-6xl rotate-12 group-hover:rotate-0 transition-transform duration-500">inventory</span>
+</div>
+<div>
+<p class="text-[0.6875rem] uppercase tracking-widest text-on-surface-variant mb-1 font-bold">Total Products</p>
+<h2 class="text-4xl font-black text-on-surface tracking-tighter">12,482</h2>
+</div>
+<div class="mt-8 flex items-center gap-2">
+<span class="text-tertiary text-xs font-bold">+2.4%</span>
+<span class="text-on-surface-variant text-[10px] uppercase tracking-wider">vs last month</span>
+</div>
+</div>
+<!-- Low Stock Card -->
+<div class="col-span-12 md:col-span-4 bg-surface-container rounded-xl p-8 relative overflow-hidden flex flex-col justify-between border border-error/10">
+<div class="absolute top-0 right-0 p-4">
+<div class="relative">
+<span class="material-symbols-outlined text-error/30 text-6xl">warning</span>
+<div class="absolute top-4 right-4 w-3 h-3 bg-error rounded-full animate-pulse shadow-[0_0_15px_rgba(238,125,119,0.6)]"></div>
+</div>
+</div>
+<div>
+<p class="text-[0.6875rem] uppercase tracking-widest text-on-surface-variant mb-1 font-bold">Low Stock Alert</p>
+<h2 class="text-4xl font-black text-error tracking-tighter">24</h2>
+</div>
+<div class="mt-8">
+<button class="text-error text-xs font-bold flex items-center gap-1 group">
+                            REVIEW URGENT ITEMS 
+                            <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Total Value Card -->
+<div class="col-span-12 md:col-span-4 bg-surface-container-high rounded-xl p-8 relative overflow-hidden flex flex-col justify-between">
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<div class="absolute -right-10 -bottom-10 w-48 h-48 rounded-full bg-primary-container blur-3xl"></div>
+</div>
+<div>
+<p class="text-[0.6875rem] uppercase tracking-widest text-on-surface-variant mb-1 font-bold">Inventory Value</p>
+<h2 class="text-4xl font-black text-on-surface tracking-tighter">$2.4M</h2>
+</div>
+<div class="mt-8 flex items-center gap-2">
+<span class="text-primary text-xs font-bold">STABLE</span>
+<span class="text-on-surface-variant text-[10px] uppercase tracking-wider">Asset Valuation</span>
+</div>
+</div>
+</div>
+<!-- Dashboard Modules (Asymmetric) -->
+<div class="grid grid-cols-12 gap-6">
+<!-- AI Insights Section -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-low rounded-xl p-1 border border-outline-variant/5">
+<div class="glass-panel rounded-[calc(0.75rem-4px)] p-8 h-full">
+<div class="flex justify-between items-start mb-10">
+<div>
+<h3 class="text-xl font-bold text-on-surface tracking-tight">AI Predictions</h3>
+<p class="text-sm text-on-surface-variant">Recommended actions for the next 7 days</p>
+</div>
+<span class="material-symbols-outlined text-tertiary-dim" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div class="space-y-6">
+<div class="flex items-center gap-6 p-4 rounded-lg bg-surface-container-lowest/40 hover:bg-surface-container-lowest transition-colors">
+<div class="w-12 h-12 rounded bg-tertiary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">trending_up</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-on-surface">Demanda Inesperada en Almacén Norte</p>
+<p class="text-xs text-on-surface-variant">Se prevé un aumento del 15% en componentes electrónicos.</p>
+</div>
+<button class="px-4 py-2 bg-primary text-on-primary text-[10px] font-bold uppercase rounded tracking-widest hover:brightness-110 transition-all">Optimize</button>
+</div>
+<div class="flex items-center gap-6 p-4 rounded-lg bg-surface-container-lowest/40 hover:bg-surface-container-lowest transition-colors">
+<div class="w-12 h-12 rounded bg-error-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-error">local_shipping</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-on-surface">Retraso en Envío de Proveedor A</p>
+<p class="text-xs text-on-surface-variant">El pedido #9021 llegará con 3 días de retraso.</p>
+</div>
+<button class="px-4 py-2 border border-outline-variant text-on-surface-variant text-[10px] font-bold uppercase rounded tracking-widest hover:bg-surface-container-high transition-all">View Details</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Cluster -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
+<div class="flex-1 bg-surface-container rounded-xl p-8 flex flex-col justify-between">
+<div>
+<h4 class="text-sm font-bold uppercase tracking-widest text-on-surface-variant mb-4">Stock Health</h4>
+<div class="w-full h-2 bg-surface-container-lowest rounded-full overflow-hidden mb-2">
+<div class="h-full w-[82%] signature-glow"></div>
+</div>
+<div class="flex justify-between text-[10px] font-bold text-on-surface-variant uppercase">
+<span>Optimal</span>
+<span class="text-on-surface">82%</span>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant mt-4 leading-relaxed">Your inventory health is in the top 10% of global benchmarks for your sector.</p>
+</div>
+<div class="flex-1 signature-glow rounded-xl p-8 flex flex-col items-center justify-center text-center group cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-on-primary text-4xl mb-4" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<h4 class="text-lg font-bold text-on-primary tracking-tight">Add New Product</h4>
+<p class="text-xs text-on-primary/70 mt-1 uppercase tracking-widest">Global Registry</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Button (FAB) -->
+<button class="fixed bottom-10 right-10 w-16 h-16 rounded-full signature-glow text-on-primary shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</main>
+</body></html>

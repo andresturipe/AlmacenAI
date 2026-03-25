@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Valtek | Inventario</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "error-container": "#7f2927",
+                        "surface-container": "#0a1839",
+                        "inverse-primary": "#5c5f61",
+                        "on-tertiary-container": "#414f62",
+                        "outline": "#6073ad",
+                        "on-tertiary-fixed": "#2e3d4e",
+                        "outline-variant": "#32457c",
+                        "on-secondary-container": "#b4c0d7",
+                        "on-background": "#dfe4ff",
+                        "tertiary-fixed-dim": "#c1d0e6",
+                        "surface-container-high": "#0b1d48",
+                        "tertiary-fixed": "#cfdef5",
+                        "on-primary": "#3d4142",
+                        "primary-dim": "#b6b9bb",
+                        "on-surface": "#dfe4ff",
+                        "error-dim": "#bb5551",
+                        "secondary-fixed-dim": "#cad5ed",
+                        "tertiary-container": "#cfdef5",
+                        "on-error": "#490106",
+                        "inverse-surface": "#faf8ff",
+                        "on-secondary-fixed": "#354053",
+                        "on-secondary": "#152032",
+                        "on-surface-variant": "#96a9e6",
+                        "tertiary-dim": "#c1d0e6",
+                        "primary": "#c4c7c9",
+                        "background": "#070d1f",
+                        "primary-container": "#444749",
+                        "surface-tint": "#c4c7c9",
+                        "on-secondary-fixed-variant": "#515c70",
+                        "secondary": "#939eb5",
+                        "surface-container-low": "#09122b",
+                        "surface-dim": "#070d1f",
+                        "on-error-container": "#ff9993",
+                        "surface": "#070d1f",
+                        "surface-variant": "#0a2257",
+                        "surface-container-lowest": "#000000",
+                        "inverse-on-surface": "#4f5469",
+                        "surface-container-highest": "#0a2257",
+                        "on-tertiary-fixed-variant": "#4a596c",
+                        "on-primary-fixed-variant": "#595c5e",
+                        "secondary-fixed": "#d8e3fb",
+                        "secondary-container": "#313c4f",
+                        "on-primary-fixed": "#3c4042",
+                        "secondary-dim": "#939eb5",
+                        "on-primary-container": "#ced1d2",
+                        "surface-bright": "#082768",
+                        "primary-fixed-dim": "#d2d5d7",
+                        "primary-fixed": "#e0e3e5",
+                        "error": "#ee7d77",
+                        "tertiary": "#e0ecff",
+                        "on-tertiary": "#49586b"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #070d1f;
+            color: #dfe4ff;
+        }
+        .skeleton {
+            background: linear-gradient(90deg, #0a1839 25%, #0b1d48 50%, #0a1839 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #070d1f;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #32457c;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r-0 bg-slate-950 dark:bg-[#09122b] flex flex-col p-6 gap-8 z-50">
+<div class="flex flex-col gap-1">
+<span class="text-2xl font-black tracking-tighter text-[#dfe4ff] uppercase">Valtek</span>
+<span class="font-inter text-xs uppercase tracking-widest text-[#96a9e6]">Inventory Intelligence</span>
+</div>
+<nav class="flex flex-col gap-2">
+<!-- Dashboard (Inactive) -->
+<a class="flex items-center gap-3 px-4 py-3 text-[#96a9e6] hover:bg-[#0a1839]/50 transition-all duration-200 font-inter tracking-tight text-sm font-medium rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<!-- Inventario (Active) -->
+<a class="flex items-center gap-3 px-4 py-3 bg-[#0a1839] text-[#dfe4ff] rounded-lg transition-all duration-200 font-inter tracking-tight text-sm font-medium active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span>Inventario</span>
+</a>
+<!-- Agente IA (Inactive) -->
+<a class="flex items-center gap-3 px-4 py-3 text-[#96a9e6] hover:bg-[#0a1839]/50 transition-all duration-200 font-inter tracking-tight text-sm font-medium rounded-lg" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span>Agente IA</span>
+</a>
+<!-- Configuración (Inactive) -->
+<a class="flex items-center gap-3 px-4 py-3 text-[#96a9e6] hover:bg-[#0a1839]/50 transition-all duration-200 font-inter tracking-tight text-sm font-medium rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Configuración</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-[#32457c]/20">
+<div class="flex items-center gap-3 px-2">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden">
+<img alt="Valtek Logo" class="w-full h-full object-cover" data-alt="Abstract minimal brand logo avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBquugakioBbsSv0b8l8nkduXfMVNqnB_Gy0eH-vVnNM5M8UmAo9fHEgS2TZlrR8ci7QjFFo5Th2gp6LwLMA0_hhD0KQ-HnlRkG_zQSxxR8RrFaWrQ7_itjdkFKdlcZDNy4rwwYy1WNpiK4ye6SeJsXauZaduOHTQ0grVYyt6C2VmzLsOrxQuKI_WjA5jqTxQqHiukh0CLq7fMiKipnr2oYHtMfccgNJhPhlURuKYmQqycV5WVphxDVKoHYRW4e6C41InOh3Wl_VNH"/>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-on-surface">Admin User</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-wider">Premium Access</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 flex flex-col bg-background relative min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-transparent backdrop-blur-xl z-40 flex justify-between items-center px-8">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#96a9e6] text-sm">search</span>
+<input class="w-full bg-surface-container-lowest border-none text-xs rounded-xl pl-10 pr-4 py-2 focus:ring-1 focus:ring-primary/30 text-on-surface placeholder:text-on-surface-variant/50 transition-all" placeholder="Buscar productos por SKU o nombre..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-inter text-xs uppercase tracking-widest text-[#96a9e6] hover:text-[#c4c7c9] transition-colors" href="#">Home</a>
+<a class="font-inter text-xs uppercase tracking-widest text-[#dfe4ff] font-bold" href="#">Inventory</a>
+<a class="font-inter text-xs uppercase tracking-widest text-[#96a9e6] hover:text-[#c4c7c9] transition-colors" href="#">Analytics</a>
+</nav>
+<div class="flex items-center gap-4 ml-4 pl-4 border-l border-[#32457c]/20">
+<button class="text-[#96a9e6] hover:text-[#c4c7c9] transition-colors">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<button class="text-[#96a9e6] hover:text-[#c4c7c9] transition-colors">
+<span class="material-symbols-outlined text-xl">help_outline</span>
+</button>
+<div class="w-8 h-8 rounded-lg bg-surface-container overflow-hidden">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="User profile placeholder avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbBxoPfRcQwg4w-2wYSRdBRW4jdtTx5JA2YtDWBtvEhQpFxJbq2m3YFKOmt53kbGQPngnb4slsMDVEgW69wBEd485ZuWeF2qVgo_zI7LB9XN-cBCaG61v1afi5bv4owjOvQrnKGY2cuKNVI9xJ7de9CHvv1ibOvkQu15j95PjDzirOzsWa1GLbFiqoBxONLFEP_WZRXezUjN3xs5e3v1wHxufsbADCtenBhv7So2bjx_OHkfYj4mFKkB4rDnwwd4sq68PzbIdqvhop"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="mt-16 p-8 flex flex-col gap-8">
+<!-- Page Header Section -->
+<section class="flex justify-between items-end">
+<div class="flex flex-col gap-2">
+<h1 class="text-4xl font-headline font-bold tracking-tight text-on-surface">-0.04em"&gt;Inventario Global</h1>
+<p class="text-on-surface-variant text-sm max-w-xl">Gestión centralizada de existencias. Los niveles se actualizan en tiempo real mediante el motor de IA Valtek.</p>
+</div>
+<button class="group flex items-center gap-2 px-6 py-3 bg-gradient-to-br from-[#c4c7c9] to-[#444749] text-[#3d4142] font-bold rounded-lg transition-all active:scale-[0.98] shadow-lg shadow-black/20">
+<span class="material-symbols-outlined text-lg">add</span>
+<span class="text-sm">+ Nuevo Producto</span>
+</button>
+</section>
+<!-- Stats Overview (Asymmetric Grid) -->
+<div class="grid grid-cols-12 gap-6">
+<div class="col-span-8 bg-surface-container-low p-6 rounded-xl relative overflow-hidden group">
+<div class="relative z-10 flex justify-between items-start">
+<div>
+<span class="label-md uppercase tracking-wider text-[10px] text-on-surface-variant">Valor Total del Stock</span>
+<div class="text-4xl font-headline font-black mt-2 tracking-tighter">$1,284,092.00 <span class="text-sm font-medium text-tertiary">USD</span></div>
+</div>
+<div class="bg-surface-container p-2 rounded-lg">
+<span class="material-symbols-outlined text-tertiary">trending_up</span>
+</div>
+</div>
+<!-- Background Glow -->
+<div class="absolute -right-10 -bottom-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors"></div>
+</div>
+<div class="col-span-4 bg-surface-container p-6 rounded-xl flex flex-col justify-between border-l-4 border-error">
+<span class="label-md uppercase tracking-wider text-[10px] text-on-surface-variant">Productos en Crítico</span>
+<div class="flex items-center gap-4">
+<div class="text-4xl font-headline font-black tracking-tighter">12</div>
+<div class="flex items-center gap-1 px-2 py-0.5 rounded bg-error-container/20 text-error text-[10px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-pulse"></span>
+REQUIERE ACCIÓN
+                        </div>
+</div>
+</div>
+</div>
+<!-- Inventory Data Table Section -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden">
+<div class="p-6 border-b border-[#32457c]/10 flex items-center justify-between bg-surface-container/30">
+<div class="flex items-center gap-4">
+<span class="text-sm font-semibold">Productos Registrados</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant text-[10px] font-bold">Total: 1,402</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-[#96a9e6] hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+</button>
+<button class="p-2 text-[#96a9e6] hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined text-sm">download</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container/50">
+<th class="px-6 py-4 label-md uppercase tracking-widest text-[10px] text-on-surface-variant font-bold">SKU</th>
+<th class="px-6 py-4 label-md uppercase tracking-widest text-[10px] text-on-surface-variant font-bold">Nombre</th>
+<th class="px-6 py-4 label-md uppercase tracking-widest text-[10px] text-on-surface-variant font-bold text-center">Stock actual</th>
+<th class="px-6 py-4 label-md uppercase tracking-widest text-[10px] text-on-surface-variant font-bold text-center">Nivel Mínimo</th>
+<th class="px-6 py-4 label-md uppercase tracking-widest text-[10px] text-on-surface-variant font-bold text-right">Precio USD</th>
+<th class="px-6 py-4"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#32457c]/5">
+<!-- Critical Stock Product -->
+<tr class="hover:bg-surface-container/40 transition-colors group">
+<td class="px-6 py-4 font-mono text-xs text-primary">VAL-7821-X</td>
+<td class="px-6 py-4 text-sm font-medium text-on-surface">Procesador Cuántico Valtek v2</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-error-container/10 text-error font-bold text-xs">
+                                        4
+                                        <span class="material-symbols-outlined text-[12px]">warning</span>
+</span>
+</td>
+<td class="px-6 py-4 text-center text-xs text-on-surface-variant">10</td>
+<td class="px-6 py-4 text-right text-sm font-bold tabular-nums">$4,250.00</td>
+<td class="px-6 py-4 text-right">
+<button class="opacity-0 group-hover:opacity-100 p-2 text-on-surface-variant hover:text-on-surface transition-all">
+<span class="material-symbols-outlined text-lg">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Low Stock Product (Warning) -->
+<tr class="hover:bg-surface-container/40 transition-colors group">
+<td class="px-6 py-4 font-mono text-xs text-primary">VAL-1029-A</td>
+<td class="px-6 py-4 text-sm font-medium text-on-surface">Módulo de Memoria Líquida 64GB</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container/30 text-secondary font-bold text-xs">
+                                        12
+                                        <span class="material-symbols-outlined text-[12px]">priority_high</span>
+</span>
+</td>
+<td class="px-6 py-4 text-center text-xs text-on-surface-variant">15</td>
+<td class="px-6 py-4 text-right text-sm font-bold tabular-nums">$189.99</td>
+<td class="px-6 py-4 text-right">
+<button class="opacity-0 group-hover:opacity-100 p-2 text-on-surface-variant hover:text-on-surface transition-all">
+<span class="material-symbols-outlined text-lg">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Healthy Stock Product -->
+<tr class="hover:bg-surface-container/40 transition-colors group">
+<td class="px-6 py-4 font-mono text-xs text-primary">VAL-4402-K</td>
+<td class="px-6 py-4 text-sm font-medium text-on-surface">Unidad de Enfriamiento Criogénico</td>
+<td class="px-6 py-4 text-center">
+<span class="text-sm font-bold text-on-surface">142</span>
+</td>
+<td class="px-6 py-4 text-center text-xs text-on-surface-variant">25</td>
+<td class="px-6 py-4 text-right text-sm font-bold tabular-nums">$720.50</td>
+<td class="px-6 py-4 text-right">
+<button class="opacity-0 group-hover:opacity-100 p-2 text-on-surface-variant hover:text-on-surface transition-all">
+<span class="material-symbols-outlined text-lg">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Skeleton Row 1 -->
+<tr class="animate-pulse">
+<td class="px-6 py-4"><div class="h-3 w-20 skeleton rounded"></div></td>
+<td class="px-6 py-4"><div class="h-3 w-48 skeleton rounded"></div></td>
+<td class="px-6 py-4 flex justify-center"><div class="h-6 w-12 skeleton rounded-full"></div></td>
+<td class="px-6 py-4 text-center"><div class="h-3 w-8 skeleton rounded mx-auto"></div></td>
+<td class="px-6 py-4 text-right"><div class="h-3 w-16 skeleton rounded ml-auto"></div></td>
+<td class="px-6 py-4"></td>
+</tr>
+<!-- Skeleton Row 2 -->
+<tr class="animate-pulse">
+<td class="px-6 py-4"><div class="h-3 w-24 skeleton rounded"></div></td>
+<td class="px-6 py-4"><div class="h-3 w-56 skeleton rounded"></div></td>
+<td class="px-6 py-4 flex justify-center"><div class="h-6 w-12 skeleton rounded-full"></div></td>
+<td class="px-6 py-4 text-center"><div class="h-3 w-8 skeleton rounded mx-auto"></div></td>
+<td class="px-6 py-4 text-right"><div class="h-3 w-16 skeleton rounded ml-auto"></div></td>
+<td class="px-6 py-4"></td>
+</tr>
+<!-- Skeleton Row 3 -->
+<tr class="animate-pulse">
+<td class="px-6 py-4"><div class="h-3 w-16 skeleton rounded"></div></td>
+<td class="px-6 py-4"><div class="h-3 w-40 skeleton rounded"></div></td>
+<td class="px-6 py-4 flex justify-center"><div class="h-6 w-12 skeleton rounded-full"></div></td>
+<td class="px-6 py-4 text-center"><div class="h-3 w-8 skeleton rounded mx-auto"></div></td>
+<td class="px-6 py-4 text-right"><div class="h-3 w-16 skeleton rounded ml-auto"></div></td>
+<td class="px-6 py-4"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 border-t border-[#32457c]/10 bg-surface-container/10 flex items-center justify-between">
+<span class="text-[10px] text-on-surface-variant uppercase tracking-widest font-medium">Mostrando 3 de 1,402 entradas</span>
+<div class="flex gap-2">
+<button class="px-3 py-1 text-[10px] rounded border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container transition-all">Anterior</button>
+<button class="px-3 py-1 text-[10px] rounded border border-outline-variant/30 text-on-surface hover:bg-surface-container transition-all">Siguiente</button>
+</div>
+</div>
+</div>
+<!-- Contextual Insights (Bento Grid Style) -->
+<div class="grid grid-cols-3 gap-6">
+<div class="bg-surface-container p-5 rounded-xl border-t border-primary/5">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary text-lg">auto_awesome</span>
+<h3 class="text-xs font-bold uppercase tracking-widest">Predicción IA</h3>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed mb-4">La IA sugiere reabastecer 45 unidades de <span class="text-on-surface font-bold">Módulos de Memoria</span> antes del viernes para evitar ruptura de stock.</p>
+<button class="text-[10px] font-black uppercase text-tertiary flex items-center gap-1 hover:gap-2 transition-all">Generar Orden <span class="material-symbols-outlined text-xs">arrow_forward</span></button>
+</div>
+<div class="bg-surface-container p-5 rounded-xl border-t border-error/5">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-error text-lg">dangerous</span>
+<h3 class="text-xs font-bold uppercase tracking-widest text-error">Alerta Crítica</h3>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">3 productos han alcanzado el <span class="text-on-surface font-bold">Nivel Cero</span> en las últimas 2 horas. El sistema ha bloqueado pedidos externos.</p>
+</div>
+<div class="bg-surface-container-highest/40 backdrop-blur-md p-5 rounded-xl flex flex-col justify-center items-center text-center border border-white/5">
+<div class="w-12 h-12 rounded-full bg-gradient-to-tr from-primary to-surface-container flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-on-primary">sync</span>
+</div>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant mb-1">Sincronización Cloud</span>
+<span class="text-xs font-medium">Actualizado hace 42 segundos</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating UI Gradient -->
+<div class="fixed pointer-events-none -bottom-20 -left-20 w-96 h-96 bg-primary/5 rounded-full blur-[120px] z-0"></div>
+<div class="fixed pointer-events-none top-0 right-0 w-[500px] h-[500px] bg-[#0a2257]/10 rounded-full blur-[150px] z-0"></div>
+</body></html>
