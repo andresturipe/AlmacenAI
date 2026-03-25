@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { toggleOrganizationSubscription } from "../actions";
+import { toggleOrganizationSubscription } from "../../app/admin/actions";
 import { toast } from "sonner";
 
 interface SubscriptionSwitchProps {
