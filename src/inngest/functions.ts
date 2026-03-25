@@ -1,6 +1,6 @@
 import { NonRetriableError } from "inngest";
 import { inngest } from "./client";
-import { prisma } from "@/lib/db";
+import { prisma } from "@/lib/prisma";
 
 // ──────────────────────────────────────────────
 // updateExchangeRates — Cron function (Inngest v4 API)

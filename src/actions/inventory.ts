@@ -1,6 +1,6 @@
 "use server";
 
-import { prisma } from "@/lib/db";
+import { prisma } from "@/lib/prisma";
 import { syncStockSchema, type SyncStockValues } from "@/lib/validations";
 import { revalidatePath } from "next/cache";
 

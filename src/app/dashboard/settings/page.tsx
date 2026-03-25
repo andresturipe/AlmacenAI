@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { prisma } from "@/lib/db";
+import { prisma } from "@/lib/prisma";
 
 export const metadata: Metadata = { title: "Configuración" };
 
