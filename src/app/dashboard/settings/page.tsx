@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 
 export const metadata: Metadata = { title: "Configuración" };
+export const dynamic = 'force-dynamic';
 
 const DEMO_ORG_ID = "demo-org-001";
 

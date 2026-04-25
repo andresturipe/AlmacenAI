@@ -1,14 +1,10 @@
 import type { Metadata } from "next";
-import { prisma } from "@/lib/prisma";
 import { KpiCards } from "@/components/dashboard/kpi-cards";
 import { InventoryTable } from "@/components/dashboard/inventory-table";
-
 import { auth } from "@clerk/nextjs/server";
-
 import { getDashboardData } from "@/lib/prisma";
 
 export const metadata: Metadata = { title: "Dashboard" };
-export const revalidate = 60;
 export const dynamic = 'force-dynamic';
 
 export default async function DashboardPage() {
