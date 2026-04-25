@@ -5,6 +5,8 @@ import { CategoryCard } from "@/components/dashboard/CategoryCard";
 import Link from "next/link";
 import { Folder } from "lucide-react";
 
+export const dynamic = 'force-dynamic';
+
 export default async function InventoryCategoriesPage() {
   const { userId, orgId, orgRole } = await auth();
   const ORG_ID = orgId;
